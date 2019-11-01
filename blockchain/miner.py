@@ -43,11 +43,15 @@ def valid_proof(last_hash, proof):
     """
 
     # TODO: Your code here!
-    block_string = json.dumps(last_hash)
-    guess = f'{block_string}{proof}'.encode()
+
+    previous_proof = f'{last_hash}'.encode()
+    previous_proof = hashlib.sha256(previous_proof).hexdigest()
+    
+    guess = f"{proof}".encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
-    first = guess_hash[:6] 
-    last = guess_hash[-6:]
+
+    first = guess_hash[:6]
+    last = previous_proof[-6:]
     return  last == first
 
 if __name__ == '__main__':
