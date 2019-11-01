@@ -1,30 +1,25 @@
 #  Hint:  You may not need all of these.  Remove the unused functions.
 from hashtables import (HashTable,
                         hash_table_insert,
-                        hash_table_remove,
-                        hash_table_retrieve,
-                        hash_table_resize)
+                        hash_table_retrieve)
 
 
 def get_indices_of_item_weights(weights, length, limit):
     ht = HashTable(16)
-
     """
     YOUR CODE HERE
     """
-    if len(weights) <= 1:
-        return None
-
-    ht = HashTable(length)
     difference = 0
     for i in range(length):
         # get difference 
         difference = limit - weights[i]
+        # check if difference is in hash map
         retrieved_weight = hash_table_retrieve(ht, weights[i])
-        print(retrieved_weight)
+        # print(retrieved_weight)
         if retrieved_weight is not None:
             return (i, retrieved_weight)
         else:
+            # hash the difference as index and location as value
             hash_table_insert(ht, difference, i)
     # return indeces of itme weight in a tupple 
     return None
