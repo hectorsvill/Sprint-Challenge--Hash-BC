@@ -47,7 +47,7 @@ def valid_proof(last_hash, proof):
     guess = f'{block_string}{proof}'.encode()
     guess_hash = hashlib.sha256(guess).hexdigest()
     first = guess_hash[:6] 
-    last = guess_hash[6:]
+    last = guess_hash[-6:]
     return  last == first
 
 if __name__ == '__main__':
